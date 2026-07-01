@@ -569,7 +569,8 @@ async function startDownload() {
 
       try {
         const blob = await fetchViaProxy(url);
-        zip.file(filename, blob);
+        const folder = sanitize(nombre);
+        zip.file(`${folder}/${filename}`, blob);
       } catch (err) {
         errors.push({ filename, url, err: err.message });
       }
